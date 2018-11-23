@@ -1,3 +1,5 @@
 {
-    "/": "testpage.html"
+    "/": { "type": "html", "path": "./content/testpage.html" },
+    "/testform": { "type": "html", "path": "./content/testform.html" },
+    "/testscript": { "type": "js", "path": "testscript.js" }
 }

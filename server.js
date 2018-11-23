@@ -1,6 +1,6 @@
 var http = require("http");
-var cp = require("./contentProvider")
+var dispatcher = require("./dispatcher")
 
-http.createServer(function (req, res) {
-    cp.getWebsite(req, res);
+http.createServer(function (request, response) {
+    dispatcher.do(request, response)
 }).listen(8080);
