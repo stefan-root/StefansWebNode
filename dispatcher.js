@@ -60,6 +60,5 @@ function deliverFile(action, response) {
         response.writeHead(200, {"Content-Type": action.content_type});
         response.write(data);
         response.end();
-        fs.close();
     });    
 }
