@@ -1,5 +1,10 @@
 {
     "/": { "type": "html", "path": "./content/testpage.html" },
     "/testform": { "type": "html", "path": "./content/testform.html" },
-    "/testform_request": { "type": "js", "path": "./script/testform_request.js" }
+    "/testform_request": { "type": "js", "path": "./script/testform_request.js" },
+    "/createTransaction": {"type": "html", "path": "./content/createTransaction.html"},
+    "/stylesheets/milligram.css":   {"type": "static", "path": "./content/stylesheets/milligram.min.css", "content_type": "text/css"},
+    "/stylesheets/normalize.css":   {"type": "static", "path": "./content/stylesheets/normalize.css", "content_type": "text/css"},
+    "/stylesheets/WGApps.css":      {"type": "static", "path": "./content/stylesheets/WGApps.css", "content_type": "text/css"},
+    "/images/WG_Logo.png":          {"type": "static", "path": "./content/images/WG_Logo.png", "content_type": "image/png"}
 }

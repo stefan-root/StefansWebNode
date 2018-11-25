@@ -13,6 +13,7 @@ function onValidationSuccess(action, request, response) {
     switch(action.type) {
         case "html": showWebsite(action.path, response); break;
         case "js": runScript(request, response, action.path); break;
+        case "static": deliverFile(action, response); break;
     }
 }
 
@@ -52,4 +53,13 @@ function parseWebsite(err, data, response) {
         response.write(data);
         response.end();
     }
+}
+
+function deliverFile(action, response) {
+    fs.readFile(action.path, function(err, data) {
+        response.writeHead(200, {"Content-Type": action.content_type});
+        response.write(data);
+        response.end();
+        fs.close();
+    });    
 }
