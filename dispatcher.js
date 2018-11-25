@@ -1,12 +1,30 @@
 var fs = require("fs");
-var urls = require("./urlMapping.json")
+var urls = require("./urlMapping.json");
+var validation = require("./validation");
 
 exports.do = function(request, response) {
     var action = lookupURL(request.url);
-    switch(action.type) {
-        case "html": showWebsite(action.path, response);
-        case "js": return("500");
+    if(validation.validateRequest(request)) {
+        onValidationSuccess(action, request, response);
     }
+}
+
+function onValidationSuccess(action, request, response) {
+    switch(action.type) {
+        case "html": showWebsite(action.path, response); break;
+        case "js": runScript(request, response, action.path); break;
+    }
+}
+
+function runScript(request, response, path) {
+    var script = require(path);
+    script.run(request, response);
+}
+
+function showWebsite(path, response) {
+    fs.readFile(path, function(err, data) {
+        parseWebsite(err, data, response);
+    });
 }
 
 function lookupURL(url) {
@@ -15,12 +33,6 @@ function lookupURL(url) {
     } else {
         return({ "type": "html", "path": "content/404.html" });
     }
-}
-
-function showWebsite(path, response) {
-    fs.readFile(path, function(err, data) {
-        parseWebsite(err, data, response);
-    });
 }
 
 function parseWebsite(err, data, response) {
